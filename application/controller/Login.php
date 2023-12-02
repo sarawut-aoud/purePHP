@@ -21,8 +21,9 @@ class Login extends CURD_controller
     {
         $this->renderview('/view/login.php','blank_view.php');
     }
-    public function register()
+    public function home()
     {
+        echo '<pre>';print_r(1);die;
     }
 }
 renderClass(new Login());
