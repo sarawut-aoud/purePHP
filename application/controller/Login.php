@@ -13,16 +13,16 @@ class Login extends CURD_controller
     {
         if (method_exists('Login', $page)) {
             $this->$page();
+        } else {
+            throw new Exception("Method Not Found");
         }
-        throw new Exception("Method Not Found");
     }
     public function index()
     {
-        $results =  $this->model->getdata();
+        $this->renderview('/view/login.php','blank_view.php');
     }
     public function register()
     {
-        $this->renderview('/view/login.php');
     }
 }
 renderClass(new Login());

@@ -9,7 +9,6 @@ switch ($production) {
         // Report simple running errors
         error_reporting(E_ERROR | E_WARNING | E_PARSE);
         // Reporting E_NOTICE can be good too (to report uninitialized
-
         error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
         // Report all errors except E_NOTICE
         error_reporting(E_ALL & ~E_NOTICE);
@@ -32,13 +31,12 @@ function base_url($uri = '', $protocol = NULL)
         $base_url = $potocal . '://' . $_SERVER['HTTP_HOST'] . '/' . explode('/', $_SERVER['REQUEST_URI'])[1];
     };
 
-    return  $base_url . $uri;
+    return  $base_url . '/' . $uri;
 }
 function renderClass($classname)
 {
-
     $function = explode('/', $_SERVER['REQUEST_URI']);
-    $page = $function[5] ? $function[5] : 'index';
+    $page = !empty($function[5]) ? $function[5] : 'index';
     $app = $classname;
     $app->load($page);
 }
@@ -127,11 +125,14 @@ class CURD_controller extends Core_DB
     {
         $this->another_css .= '<link rel="stylesheet" href="' . base_url($path) . '">' . "\n\t";
     }
-    protected function renderview($path)
+    protected function renderview($path, $template = 'master.php')
     {
         $this->data['another_css'] = $this->another_css;
         $this->data['another_js'] = $this->another_js;
         $this->data['content'] =   dirname(__DIR__) . $path;
-        include dirname(__DIR__) . '/view/template/master.php';
+        $this->data['left_sidebar'] =   dirname(__DIR__) . "/view/template/left_sidebar_view.php";
+        $this->data['breadcrumb_list'] =   dirname(__DIR__) . "/view/template/breadcrumb_view.php";
+        $this->data['top_navbar'] =   dirname(__DIR__) . "/view/template/top_navbar_view.php";
+        include dirname(__DIR__) . '/view/template/' . $template;
     }
 }
