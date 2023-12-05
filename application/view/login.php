@@ -15,7 +15,7 @@
 </style>
 <div class="bg">
     <div class="position-relative h-100">
-        <div class="d-flex justify-content-center w-100 position-absolute" style="top: 35%;">
+        <div class="d-flex justify-content-center w-100 position-absolute" style="top: 30%;">
             <div class="login-box">
                 <div class="d-flex gap-3 align-items-center">
                     <div class="logo" style="width: 200px;;">
@@ -35,6 +35,9 @@
                         </div>
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-primary " type="button"> Login</button>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-end mt-4">
+                            <a href="" class="font-sm">Create Account</a>
                         </div>
                     </div>
                 </div>
